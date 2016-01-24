@@ -1,0 +1,50 @@
+PS3 Joystick in Linux working!!!
+In order to get it working run these commands in the terminal:
+
+sudo apt-get install bluez-utils bluez-compat bluez-hcidump checkinstall libusb-dev libbluetooth-dev joystick pyqt4-dev-tools
+
+wget http://www.pabr.org/sixlinux/sixpair.c
+gcc -o sixpair sixpair.c -lusb
+
+wget http://sourceforge.net/projects/qtsixa/files/QtSixA%201.5.1/QtSixA-1.5.1-src.tar.gz
+tar xfvz QtSixA-1.5.1-src.tar.gz
+cd QtSixA-1.5.1/sixad
+make
+sudo mkdir -p /var/lib/sixad/profiles
+sudo checkinstall
+
+Now once all these commands are run you will get an error!
+Create a file named compilation_sid.patch in the QTSixA-1.5.1 folder
+Paste this code into compilation_sid.patch:
+
+--- QtSixA-1.5.1.orig/sixad/shared.h	2011-10-12 03:37:38.000000000 +0300
++++ QtSixA-1.5.1/sixad/shared.h	2012-08-14 19:30:12.190379004 +0300
+@@ -18,6 +18,8 @@
+ #ifndef SHARED_H
+ #define SHARED_H
+ 
++#include <unistd.h>
++
+ struct dev_led {
+     bool enabled;
+     bool anim;
+     
+
+Now run these command:
+
+patch -Np1 -i compilation_sid.patch
+
+sudo checkinstall
+
+Everything should install
+Connect the ps3 controller to the computer and run:
+
+sudo ./sixpair 
+
+in the folder containing the sixpair file
+
+then navigate to QTsixA-1.5.1/sixad and run:
+
+sudo sixad --start
+
+The Controller will connect and the Computer will capture the strokes.
