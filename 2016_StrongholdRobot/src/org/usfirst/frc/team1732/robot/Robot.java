@@ -28,7 +28,8 @@ public class Robot extends IterativeRobot {
 	long time;
 	long startTime;
 
-	public void robotInit() { // ports not set
+	public void robotInit() {
+		// ports not set
 		left1 = new CANTalon(10);
 		left2 = new CANTalon(11);
 		left3 = new CANTalon(12);
@@ -71,9 +72,7 @@ public class Robot extends IterativeRobot {
 		right3.set(right);
 	}
 
-	private void setCatapult(double one, double two) { // I have a problem of
-														// typing 1 instead of
-														// i.
+	private void setCatapult(double one, double two) {
 		catapult1.set(one * -1);
 		catapult2.set(two);
 	}
