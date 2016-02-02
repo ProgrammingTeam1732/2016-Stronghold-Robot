@@ -44,8 +44,8 @@ public class Robot extends IterativeRobot {
 	}
 	
     public void teleopPeriodic() {
-    	if(halleffect.getVoltage() >= 2) SmartDashboard.putBoolean("magnet?", false); //No Magnet if ~3.736 v DC
-		if(halleffect.getVoltage() < 2) SmartDashboard.putBoolean("magenet?", true); //Magnet if ~0.203 v DC
+    	
+    
     }
     
 	private void setMotor(double left, double right) {
