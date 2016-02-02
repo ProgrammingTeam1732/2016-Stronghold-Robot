@@ -33,8 +33,6 @@ public class Robot extends IterativeRobot {
 
 		shifting = new Solenoid(21);
 		
-		halleffect = new AnalogInput(0);
-		SmartDashboard.putBoolean("magnet?", false);
 	}
 	
 	public void autonomousInit() {
