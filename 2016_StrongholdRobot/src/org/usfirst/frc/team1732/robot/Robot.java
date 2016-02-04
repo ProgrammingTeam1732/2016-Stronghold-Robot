@@ -79,5 +79,4 @@ public class Robot extends IterativeRobot {
     }
 	
 	private long getTime() {return System.currentTimeMillis() - startTime;}
-
 }
