@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -17,6 +18,7 @@ public class Robot extends IterativeRobot {
 	CANTalon catapult1; CANTalon catapult2; Solenoid catapultS;
 	
 	double left, right;
+	boolean a;
 	
 	Joystick controller = new Joystick(0);
 
@@ -27,7 +29,7 @@ public class Robot extends IterativeRobot {
 		// ports not set
 		left1  = new CANTalon(11); left2  = new CANTalon(15); left3  = new CANTalon(14);
 		right1 = new CANTalon(16); right2 = new CANTalon(17); right3 = new CANTalon(12);
-
+		a = false;
 		//catapult1 = new CANTalon(16); catapult2 = new CANTalon(17); catapultS = new Solenoid(20);
 
 		//intake1 = new CANTalon(18); intake2 = new CANTalon(19); intakeS = new Solenoid(22);
@@ -68,6 +70,13 @@ public class Robot extends IterativeRobot {
 		intake1.set(one * -1);
 		intake2.set(two);
 	}
+	
+	public void testPeriodic() {
+		if (a == false) a = controller.getRawButton(6);
+		if(a) setMotors(-0.2, -0.2);
+		if (controller.getRawButton(7)) a = false;
+    	LiveWindow.run();
+    }
 	
 	private long getTime() {return System.currentTimeMillis() - startTime;}
 
