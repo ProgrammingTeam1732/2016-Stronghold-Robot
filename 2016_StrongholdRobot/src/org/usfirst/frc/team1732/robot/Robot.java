@@ -73,7 +73,7 @@ public class Robot extends IterativeRobot {
 	
 	public void testPeriodic() {
 		if (a == false) a = controller.getRawButton(6);
-		if(a) setMotors(-0.2, -0.2);
+		if (a) setMotors(-0.2, -0.2);
 		if (controller.getRawButton(7)) a = false;
     	LiveWindow.run();
     }
